@@ -280,7 +280,7 @@ label: ICGC PCAWG Seqware Sanger Somatic Workflow
 arguments:
   - position: 50
     shellQuote: false
-    valueFrom: '> stdout.log && mv /var/spool/cwl/* .'
+    valueFrom: '> stdout.log && mv $(runtime.outdir)/* .'
   - position: 0
     shellQuote: false
     valueFrom: "${\n \tfor (i=0;i<inputs.bam_inputs.length;i++) {\n \t    if (!inputs.bam_inputs[i].metadata['sample_type']) throw('Please set sample_type metadata')\n   \t\tif (inputs.bam_inputs[i].metadata['sample_type'].toLowerCase().search('normal') !== -1)\n    \t\treturn '--normal ' + inputs.bam_inputs[i].path\n \t}\n}"
